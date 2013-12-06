@@ -4,10 +4,10 @@
 --
 -- cleanGeometry - remove self- and ring-selfintersections from 
 --                 input Polygon geometries 
--- http://www.sogis.ch
--- Copyright 2008 SO!GIS Koordination, Kanton Solothurn, Switzerland
+-- http://www.kappasys.ch
+-- Copyright 2008 Dr. Horst Duester
 -- Version 1.0
--- contact: horst dot duester at bd dot so dot ch
+-- contact: horst dot duester at kappasys dot ch
 --
 -- This is free software; you can redistribute and/or modify it under
 -- the terms of the GNU General Public Licence. See the COPYING file.
@@ -16,13 +16,14 @@
 -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-CREATE OR REPLACE FUNCTION cleanGeometry(geometry) RETURNS geometry AS $$
-DECLARE
+CREATE OR REPLACE FUNCTION cleanGeometry(geometry)
+  RETURNS geometry AS
+$BODY$DECLARE
   inGeom ALIAS for $1;
   outGeom geometry;
   tmpLinestring geometry;
 
-BEGIN
+Begin
   
   outGeom := NULL;
   
@@ -31,7 +32,7 @@ BEGIN
 
 -- Only process if geometry is not valid, 
 -- otherwise put out without change
-    if not isValid(inGeom) THEN
+    if not st_isvalid(inGeom) THEN
     
 -- create nodes at all self-intersecting lines by union the polygon boundaries
 -- with the startingpoint of the boundary.  
@@ -64,5 +65,5 @@ BEGIN
     RAISE NOTICE 'The input type % is not supported',GeometryType(inGeom);
     RETURN inGeom;
   END IF;	  
-END;
-$$ LANGUAGE 'plpgsql' VOLATILE;
+End;$BODY$
+  LANGUAGE 'plpgsql' VOLATILE;
