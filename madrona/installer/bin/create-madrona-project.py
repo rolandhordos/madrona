@@ -368,13 +368,16 @@ STATIC_URL = 'http://%s/media/'
     sys.path.extend(old_sys_path)
     import settings
 
+    print " * printing south migration structure"
+    southlist = ['manage.py','migrate','--list']
+    management.execute_manager(settings, southlist)
+
     print " * syncing database"
-    syncdb = ['manage.py','syncdb','--noinput', '--verbosity=3']
-    # management.execute_manager(settings, syncdb)
-    management.execute_from_command_line(syncdb)
+    syncdb = ['manage.py','syncdb','--noinput', '--no-initial-data']
+    management.execute_manager(settings, syncdb)
 
     print " * migrating data models"
-    management.execute_from_command_line(['manage.py','migrate'])
+    management.execute_manager(settings, ['manage.py','migrate'])
     # run again to get initial_data.json loaded
     management.execute_manager(settings, syncdb)
 
