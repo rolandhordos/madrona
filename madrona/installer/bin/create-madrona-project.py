@@ -369,11 +369,12 @@ STATIC_URL = 'http://%s/media/'
     import settings
 
     print " * syncing database"
-    syncdb = ['manage.py','syncdb','--noinput']
-    management.execute_manager(settings, syncdb)
+    syncdb = ['manage.py','syncdb','--noinput', '--verbosity=3']
+    # management.execute_manager(settings, syncdb)
+    management.execute_from_command_line(syncdb)
 
     print " * migrating data models"
-    management.execute_manager(settings, ['manage.py','migrate'])
+    management.execute_from_command_line(['manage.py','migrate'])
     # run again to get initial_data.json loaded
     management.execute_manager(settings, syncdb)
 
