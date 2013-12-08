@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import url, patterns
 import time
 
 
@@ -21,7 +21,7 @@ urlpatterns = patterns('madrona.layers.views',
     url(r'^privatekml/(?P<session_key>\w+)/(?P<pk>\d+)/$', 
         'get_privatekml', 
         name='layers-privatekml'),
-    url(r'^privatekml/(?P<session_key>\w+)/(?P<pk>\d+)/(?P<path>[^\z]+)$', 
+    url(r'^privatekml/(?P<session_key>\w+)/(?P<pk>\d+)/(?P<path>^\z+)$',
         'get_relative_to_privatekml', 
         name='layers-privatekml-relative'),
 )
