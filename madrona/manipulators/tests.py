@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.test.client import Client
 from django.conf import settings
-from django.conf.urls.defaults import *
 from django.contrib.gis.geos import *
 from madrona.studyregion.models import StudyRegion
 from django.core import serializers 

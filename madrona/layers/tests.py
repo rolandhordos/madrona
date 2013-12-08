@@ -15,7 +15,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User, Group
 from django.conf import settings
 from django.test.client import Client
-from django.conf.urls.defaults import *
 from django.core.urlresolvers import reverse
 import os
 

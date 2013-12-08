@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import url, patterns
 from django.core.urlresolvers import reverse
 
 urlpatterns = patterns('madrona.bookmarks.views',

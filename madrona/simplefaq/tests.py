@@ -8,7 +8,6 @@ Replace these with more appropriate tests for your application.
 from django.test import TestCase, Client
 from madrona.simplefaq.models import *
 from django.conf import settings
-from django.conf.urls.defaults import *
 
 class SimpleFaqTest(TestCase):
     fixtures = ['example_data']

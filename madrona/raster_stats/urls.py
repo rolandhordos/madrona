@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import url, patterns
 
 urlpatterns = patterns('madrona.raster_stats.views',
     url(r'^$', 'raster_list', name="raster_list"),
